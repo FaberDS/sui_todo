@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct sui_todoApp: App {
+    let manager = CoreDataManager.shared
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.managedObjectContext, manager.persistentContainer.viewContext)
         }
     }
 }
