@@ -14,6 +14,8 @@
 		6B348B0427294BAC00EADD83 /* SwiftUI_CoreData_Todo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6B348B0227294BAC00EADD83 /* SwiftUI_CoreData_Todo.xcdatamodeld */; };
 		6B348B0727294C3000EADD83 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B348B0627294C3000EADD83 /* CoreDataManager.swift */; };
 		6B348B0A2729516800EADD83 /* AddTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B348B092729516800EADD83 /* AddTodoView.swift */; };
+		6B348B0D272987E400EADD83 /* TodoSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B348B0C272987E400EADD83 /* TodoSort.swift */; };
+		6B348B0F27298DE000EADD83 /* SortSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B348B0E27298DE000EADD83 /* SortSelectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		6B348B0327294BAC00EADD83 /* SwiftUI_CoreData_Todo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SwiftUI_CoreData_Todo.xcdatamodel; sourceTree = "<group>"; };
 		6B348B0627294C3000EADD83 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		6B348B092729516800EADD83 /* AddTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoView.swift; sourceTree = "<group>"; };
+		6B348B0C272987E400EADD83 /* TodoSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoSort.swift; sourceTree = "<group>"; };
+		6B348B0E27298DE000EADD83 /* SortSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortSelectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,7 @@
 		6B348AF327293B2F00EADD83 /* sui_todo */ = {
 			isa = PBXGroup;
 			children = (
+				6B348B0B272987D800EADD83 /* Model */,
 				6B348B082729515300EADD83 /* Views */,
 				6B348B0527294C2000EADD83 /* Manager */,
 				6B348AF427293B2F00EADD83 /* sui_todoApp.swift */,
@@ -88,8 +93,17 @@
 			children = (
 				6B348AF627293B2F00EADD83 /* ContentView.swift */,
 				6B348B092729516800EADD83 /* AddTodoView.swift */,
+				6B348B0E27298DE000EADD83 /* SortSelectionView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		6B348B0B272987D800EADD83 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6B348B0C272987E400EADD83 /* TodoSort.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +181,8 @@
 				6B348B0727294C3000EADD83 /* CoreDataManager.swift in Sources */,
 				6B348AF527293B2F00EADD83 /* sui_todoApp.swift in Sources */,
 				6B348B0A2729516800EADD83 /* AddTodoView.swift in Sources */,
+				6B348B0D272987E400EADD83 /* TodoSort.swift in Sources */,
+				6B348B0F27298DE000EADD83 /* SortSelectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

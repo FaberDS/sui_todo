@@ -16,38 +16,58 @@ enum ActiveSheet : Identifiable {
 
 
 struct ContentView: View {
-    @State private var activeSheet : ActiveSheet? = nil
-    @State private var sorting = false
-    @Environment(\.managedObjectContext) var viewContext
-    @FetchRequest(sortDescriptors:
-                    [NSSortDescriptor(keyPath: \Todo.priority, ascending:false )])
-    var tasks : FetchedResults<Todo>
-
+    @State  var activeSheet : ActiveSheet? = nil
+    @State  var sorting = false
     private var prioritySign = ["","!", "!!!"]
+
+    @Environment(\.managedObjectContext) var viewContext
+    //<iOS 15 Version
+//    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Todo.priority, ascending:false )])
+    @FetchRequest(sortDescriptors: TodoSort.default.descriptors)
+    
+
+    //private var friends: SectionedFetchResults<String, Friend>
+
+    var tasks : FetchedResults<Todo>
+    
+    // Sorting >= iOS 15
+
+    @State var selectedSortItem: TodoSort = TodoSort.sorts[1]
+    @State private var selectedSort = TodoSort.default
+    let sorts: [TodoSort] = TodoSort.sorts
+
     
     
     var body: some View {
         NavigationView {
+           
+          
             todoView
             .navigationTitle("Todoes")
+            
             .toolbar {
-                ToolbarItem(placement: .primaryAction) {
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    EditButton()
+                        .disabled(tasks.isEmpty)
+                }
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                  // 2
+                  SortSelectionView(
+                    selectedSortItem: $selectedSort,
+                    sorts: TodoSort.sorts)
+                  // 3
+                  .onChange(of: selectedSort) { _ in
+                    tasks.sortDescriptors = selectedSort.descriptors
+                  }
+                  // 4
                     Button(action: {
                         activeSheet = .addView
                     }) {
                         Image(systemName: "plus")
                     }
                 }
-                ToolbarItem(placement: .navigationBarLeading) {
-                    EditButton()
-                        .disabled(tasks.isEmpty)
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        sorting.toggle()
-                    }) {
-                        Image(systemName: "arrow.up.arrow.down")
-                    }
+                
                 }
             }
             .sheet(item: $activeSheet) { activeSheet in
@@ -60,7 +80,7 @@ struct ContentView: View {
             }
          
         }
-    }
+    
     
     
     // ermöglichen conditional views
@@ -99,6 +119,7 @@ struct ContentView: View {
             //                })
                         }
         }
+    
     }
     func deleteItems(offsets: IndexSet){
         let todoToDelete = offsets.map {tasks[$0]}.forEach(viewContext.delete)
@@ -108,9 +129,11 @@ struct ContentView: View {
     }
 }
 
+
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView( )
             .environment(\.managedObjectContext, CoreDataManager.preview.persistentContainer.viewContext)
 
     }
